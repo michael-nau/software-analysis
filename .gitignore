@@ -1,2 +1,4 @@
 BUILD/
 build/
+bin/
+CMakeFiles/
