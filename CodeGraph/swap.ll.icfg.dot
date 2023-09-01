@@ -1,0 +1,41 @@
+digraph "ICFG" {
+	label="ICFG";
+
+	Node0x102122bb0 [shape=record,color=purple,label="{GlobalICFGNode0\nCopyStmt: [Var1 \<-- Var0]  \n i8* null \{ constant data \}\nAddrStmt: [Var7 \<-- Var3]  \n @.str.1 = private unnamed_addr constant [62 x i8] c\"/Users/michaelnaughton/svf-teaching/SVF/svf-llvm/lib/extapi.c\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var9 \<-- Var3]  \n @.str.2 = private unnamed_addr constant [4 x i8] c\"SVF\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var44 \<-- Var3]  \n i32 1 \{ constant data \}\nAddrStmt: [Var6 \<-- Var3]  \n i32 0 \{ constant data \}\nAddrStmt: [Var25 \<-- Var3]  \n @.str.10 = private unnamed_addr constant [7 x i8] c\"MEMSET\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var19 \<-- Var3]  \n @.str.7 = private unnamed_addr constant [11 x i8] c\"ALLOC_ARG1\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var21 \<-- Var3]  \n @.str.8 = private unnamed_addr constant [11 x i8] c\"ALLOC_ARG2\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var23 \<-- Var3]  \n @.str.9 = private unnamed_addr constant [7 x i8] c\"MEMCPY\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var17 \<-- Var3]  \n @.str.6 = private unnamed_addr constant [11 x i8] c\"ALLOC_ARG0\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var15 \<-- Var3]  \n @.str.5 = private unnamed_addr constant [12 x i8] c\"REALLOC_RET\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var11 \<-- Var3]  \n @.str.3 = private unnamed_addr constant [10 x i8] c\"OVERWRITE\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var13 \<-- Var3]  \n @.str.4 = private unnamed_addr constant [7 x i8] c\"STATIC\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var4 \<-- Var3]  \n @.str = private unnamed_addr constant [10 x i8] c\"ALLOC_RET\\00\", section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var27 \<-- Var28]  \n @llvm.global.annotations = appending global [0 x \{ i8*, i8*, i8*, i32, i8* \}] zeroinitializer, section \"llvm.metadata\" \{ Glob  \}\nAddrStmt: [Var29 \<-- Var30]  \nFunction: swap \nAddrStmt: [Var39 \<-- Var40]  \nFunction: main }"];
+	Node0x102122bb0 -> Node0x1021216f0[style=solid];
+	Node0x1021226d0 [shape=record,color=yellow,label="{FunEntryICFGNode1 \{fun: swap\}}"];
+	Node0x1021226d0 -> Node0x1021227a0[style=solid];
+	Node0x1021227a0 [shape=record,color=black,label="{IntraICFGNode2 \{fun: swap\}\nLoadStmt: [Var34 \<-- Var32]  \n   %0 = load i8*, i8** %p, align 8 }"];
+	Node0x1021227a0 -> Node0x1021220c0[style=solid];
+	Node0x1021220c0 [shape=record,color=black,label="{IntraICFGNode3 \{fun: swap\}\nLoadStmt: [Var35 \<-- Var33]  \n   %1 = load i8*, i8** %q, align 8 }"];
+	Node0x1021220c0 -> Node0x102122220[style=solid];
+	Node0x102122220 [shape=record,color=black,label="{IntraICFGNode4 \{fun: swap\}\nStoreStmt: [Var32 \<-- Var35]  \n   store i8* %1, i8** %p, align 8 }"];
+	Node0x102122220 -> Node0x102122440[style=solid];
+	Node0x102122440 [shape=record,color=black,label="{IntraICFGNode5 \{fun: swap\}\nStoreStmt: [Var33 \<-- Var34]  \n   store i8* %0, i8** %q, align 8 }"];
+	Node0x102122440 -> Node0x1021225d0[style=solid];
+	Node0x1021225d0 [shape=record,color=black,label="{IntraICFGNode6 \{fun: swap\}\n   ret void }"];
+	Node0x1021225d0 -> Node0x102121ed0[style=solid];
+	Node0x102121ed0 [shape=record,color=green,label="{FunExitICFGNode7 \{fun: swap\}|{<s0>0x102117200}}"];
+	Node0x102121ed0:s0 -> Node0x102120d90[style=solid,color=blue];
+	Node0x1021216f0 [shape=record,color=yellow,label="{FunEntryICFGNode8 \{fun: main\}}"];
+	Node0x1021216f0 -> Node0x102121790[style=solid];
+	Node0x102121790 [shape=record,color=black,label="{IntraICFGNode9 \{fun: main\}\nAddrStmt: [Var42 \<-- Var43]  \n   %a1 = alloca i8, align 1 }"];
+	Node0x102121790 -> Node0x1021218e0[style=solid];
+	Node0x1021218e0 [shape=record,color=black,label="{IntraICFGNode10 \{fun: main\}\nAddrStmt: [Var45 \<-- Var46]  \n   %b1 = alloca i8, align 1 }"];
+	Node0x1021218e0 -> Node0x102121490[style=solid];
+	Node0x102121490 [shape=record,color=black,label="{IntraICFGNode11 \{fun: main\}\nAddrStmt: [Var47 \<-- Var48]  \n   %a = alloca i8*, align 8 }"];
+	Node0x102121490 -> Node0x102121630[style=solid];
+	Node0x102121630 [shape=record,color=black,label="{IntraICFGNode12 \{fun: main\}\nAddrStmt: [Var49 \<-- Var50]  \n   %b = alloca i8*, align 8 }"];
+	Node0x102121630 -> Node0x102121210[style=solid];
+	Node0x102121210 [shape=record,color=black,label="{IntraICFGNode13 \{fun: main\}\nStoreStmt: [Var47 \<-- Var42]  \n   store i8* %a1, i8** %a, align 8 }"];
+	Node0x102121210 -> Node0x102120aa0[style=solid];
+	Node0x102120aa0 [shape=record,color=black,label="{IntraICFGNode14 \{fun: main\}\nStoreStmt: [Var49 \<-- Var45]  \n   store i8* %b1, i8** %b, align 8 }"];
+	Node0x102120aa0 -> Node0x102120c60[style=solid];
+	Node0x102120c60 [shape=record,color=red,label="{CallICFGNode15 \{fun: main\}\nCallPE: [Var32 \<-- Var47]  \n   call void @swap(i8** noundef %a, i8** noundef %b) \nCallPE: [Var33 \<-- Var49]  \n   call void @swap(i8** noundef %a, i8** noundef %b) |{<s0>0x102117200}}"];
+	Node0x102120c60:s0 -> Node0x1021226d0[style=solid,color=red];
+	Node0x102120d90 [shape=record,color=blue,label="{RetICFGNode16 \{fun: main\}}"];
+	Node0x102120d90 -> Node0x1021207b0[style=solid];
+	Node0x1021207b0 [shape=record,color=black,label="{IntraICFGNode17 \{fun: main\}\n   ret i32 0 }"];
+	Node0x1021207b0 -> Node0x1021209e0[style=solid];
+	Node0x1021209e0 [shape=record,color=green,label="{FunExitICFGNode18 \{fun: main\}\nPhiStmt: [Var41 \<-- ([Var6, ICFGNode17],)]  \n   ret i32 0 }"];
+}

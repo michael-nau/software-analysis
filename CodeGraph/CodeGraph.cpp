@@ -32,55 +32,56 @@
 #include "SABER/LeakChecker.h"
 #include "SVF-LLVM/SVFIRBuilder.h"
 
-
 using namespace SVF;
 using namespace llvm;
 using namespace std;
 
 static llvm::cl::opt<std::string> InputFilename(cl::Positional,
-        llvm::cl::desc("<input bitcode>"), llvm::cl::init("-"));
+                                                llvm::cl::desc("<input bitcode>"), llvm::cl::init("-"));
 
-int main(int argc, char ** argv) {
+int main(int argc, char **argv)
+{
 
     int arg_num = 0;
-    char **arg_value = new char*[argc];
+    char **arg_value = new char *[argc];
     std::vector<std::string> moduleNameVec;
     LLVMUtil::processArguments(argc, argv, arg_num, arg_value, moduleNameVec);
     cl::ParseCommandLineOptions(arg_num, arg_value,
                                 "Whole Program Points-to Analysis\n");
 
-    SVFModule* svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
+    SVFModule *svfModule = LLVMModuleSet::getLLVMModuleSet()->buildSVFModule(moduleNameVec);
 
     /// Build Program Assignment Graph (SVFIR or PAG)
     SVFIRBuilder builder(svfModule);
     SVFIR *pag = builder.build();
-    //dump pag
+    // dump pag
     pag->dump(svfModule->getModuleIdentifier() + ".pag");
     /// ICFG
     ICFG *icfg = pag->getICFG();
-    //dump icfg
+    // dump icfg
     icfg->dump(svfModule->getModuleIdentifier() + ".icfg");
 
-        // iterate each ICFGNode on ICFG
-    for(ICFG::iterator i = icfg->begin(); i != icfg->end(); i++)
+    // iterate each ICFGNode on ICFG
+    for (ICFG::iterator i = icfg->begin(); i != icfg->end(); i++)
     {
         ICFGNode *n = i->second;
-        // SVFUtil::outs() << n->toString() << "\n";
-        // for(ICFGEdge* edge : n->getOutEdges()){
-        //     SVFUtil::outs() << edge->toString() << "\n";
-        // }
+        SVFUtil::outs() << n->toString() << "\n";
+        for (ICFGEdge *edge : n->getOutEdges())
+        {
+            SVFUtil::outs() << edge->toString() << "\n";
+        }
     }
 
     // iterate each SVFVar on SVFIR
-    for(SVFIR::iterator p = pag->begin(); p != pag->end();p++)
+    for (SVFIR::iterator p = pag->begin(); p != pag->end(); p++)
     {
         SVFVar *n = p->second;
-        // SVFUtil::outs() << n->toString() << "\n";
-        // for(SVFStmt* edge : n->getOutEdges()){
-        //     SVFUtil::outs() << edge->toString() << "\n";
-        // }
+        SVFUtil::outs() << n->toString() << "\n";
+        for (SVFStmt *edge : n->getOutEdges())
+        {
+            SVFUtil::outs() << edge->toString() << "\n";
+        }
     }
-
 
     return 0;
 }

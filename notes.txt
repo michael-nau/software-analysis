@@ -1,0 +1,5 @@
+NOW working
+Dont fiddle with the makefiles - it will break your environment
+
+this tutorial works
+https://github.com/SVF-tools/Teaching-Software-Verification/wiki/Building-from-scratch
