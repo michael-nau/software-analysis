@@ -2,3 +2,5 @@ BUILD/
 build/
 bin/
 CMakeFiles/
+.cache
+.DS_Store
